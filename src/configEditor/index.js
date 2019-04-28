@@ -7,41 +7,48 @@ const ConfigEditor = (props) => (
             const key = entry[0];
             const value = entry[1];
          if ( typeof value === "string" || typeof value === "number" ){
-             return (
-                <div>
-                    {key} : <input type="text" value={value} />
-                </div>
-            )
+             return createTextInput(key, value);
         }
         if( typeof value === "boolean" ){
-            return (
-                <div>
-                    { value
-                    ? (<>{key} : <input type="checkbox" value={value} checked/></>)
-                    : (<>{key} : <input type="checkbox" value={value}/></>)
-                    }
-                </div>
-            )
+            return createBooleanInput(value, key);
         }
         if( isArray(value) ){
-            return (
-                <div>
-                    {key} : {value.map(element => (
-                        <div>
-                            <input type="text" value={element}/>
-                        </div>
-                        )
-                    )}
-                </div>
-            )  
+            return createArrayInput(key, value)  
         }
-        return (
-            <div>
-                {entry[0]} : <ConfigEditor config={entry[1]}/>
-            </div>
-        )    
+        return createObjectInput(entry)    
      }) } 
     </div>
 );
 
 export default ConfigEditor;
+
+const createTextInput = (key, value) => (
+    <div>
+        {key}: <input type="text" value={value} />
+    </div>
+);
+const createObjectInput = (entry) => (
+    <div>
+        {entry[0]}: <ConfigEditor config={entry[1]} />
+    </div>
+);
+
+const createArrayInput = (key, value) => (
+    <div>
+        {key}: {value.map(element => (
+        <div>
+            <input type="text" value={element} />
+        </div>
+        ))}
+    </div>
+);
+
+
+const createBooleanInput = (value, key) => (
+    <div>
+        { value
+            ? (<>{key}: <input type="checkbox" value={value} checked /></>)
+            : (<>{key}: <input type="checkbox" value={value} /></>)}
+    </div>
+);
+
