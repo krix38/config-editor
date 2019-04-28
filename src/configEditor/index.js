@@ -4,32 +4,42 @@ import { isArray } from 'util';
 const ConfigEditor = (props) => (
     <div> { Object.entries(props.config).map(
         entry => {
-         if ( typeof entry[1] === "string" || typeof entry[1] === "number"){
+            const key = entry[0];
+            const value = entry[1];
+         if ( typeof value === "string" || typeof value === "number" ){
              return (
                 <div>
-                    {entry[0]} : <input type="text" value={entry[1]} />
+                    {key} : <input type="text" value={value} />
                 </div>
             )
-        }else{
-            if( isArray(entry[1]) ){
-                return (
-                    <div>
-                        {entry[0]} : {entry[1].map(element => (
-                            <div>
-                                <input type="text" value={element}/>
-                            </div>
-                            )
-                        )}
-                    </div>
-                )  
-            }else{
-                return (
-                    <div>
-                        {entry[0]} : <ConfigEditor config={entry[1]}/>
-                    </div>
-                )
-            }
         }
+        if( typeof value === "boolean" ){
+            return (
+                <div>
+                    { value
+                    ? (<>{key} : <input type="checkbox" value={value} checked/></>)
+                    : (<>{key} : <input type="checkbox" value={value}/></>)
+                    }
+                </div>
+            )
+        }
+        if( isArray(value) ){
+            return (
+                <div>
+                    {key} : {value.map(element => (
+                        <div>
+                            <input type="text" value={element}/>
+                        </div>
+                        )
+                    )}
+                </div>
+            )  
+        }
+        return (
+            <div>
+                {entry[0]} : <ConfigEditor config={entry[1]}/>
+            </div>
+        )    
      }) } 
     </div>
 );

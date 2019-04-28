@@ -10,6 +10,8 @@ const config = {
     city: "winterfell"
   },
   age: 34,
+  isTargaryien: true,
+  isStark: false,
   friends: ["tyrion", "aria"]
 }
 
