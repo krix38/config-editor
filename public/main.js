@@ -13,6 +13,7 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
+      zoomFactor: 0.7,
       nodeIntegration: true
     }
   })

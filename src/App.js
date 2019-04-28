@@ -15,7 +15,7 @@ const config = {
   age: 34,
   isTargaryien: true,
   isStark: false,
-  friends: ["tyrion", "aria"]
+  friends: ["tyrion", "arya"]
 }
 
 function App() {

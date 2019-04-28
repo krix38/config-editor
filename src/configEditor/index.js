@@ -2,7 +2,7 @@ import React from 'react';
 import { isArray } from 'util';
 
 const ConfigEditorContainer = (props) => (
-    <div className="container">
+    <div style={{ marginTop: "20px" }} className="container">
         <ConfigEditor {...props} />
     </div>
 )
@@ -36,11 +36,11 @@ const insertEmptyCols = (colNumber) => (
 )
 
 const createTextInput = (key, value, emptyCols) => (
-    <div className="row">
+    <div className="form-group row">
         { insertEmptyCols(emptyCols) }
-        <div className="col-lg-1">
+        <label className="col-lg-1">
             {key}:
-        </div>
+        </label>
         <div className="col-lg-1">
             <input type="text" value={value} />
         </div>
@@ -48,22 +48,22 @@ const createTextInput = (key, value, emptyCols) => (
 );
 const createObjectInput = (entry, emptyCols) => (
     <>
-    <div className="row">
+    <div className="from-group row">
         { insertEmptyCols(emptyCols) }
-        <div className="col-lg-1">
+        <label className="col-lg-1">
             {entry[0]}:
-        </div>
+        </label>
     </div>
         <ConfigEditor config={entry[1]} emptyCols={emptyCols + 1} />
     </>
 );
 
 const createArrayInput = (key, value, emptyCols) => (
-    <div className="row">
+    <div className="from-group row">
         { insertEmptyCols(emptyCols) }
-        <div className="col-lg-1">
+        <label className="col-lg-1">
             {key}:
-        </div>
+        </label>
         <div className="col-lg-1">
             {value.map(element => (
             <div>
@@ -76,11 +76,11 @@ const createArrayInput = (key, value, emptyCols) => (
 
 
 const createBooleanInput = (value, key, emptyCols) => (
-    <div className="row">
+    <div className="from-group row">
         { insertEmptyCols(emptyCols) }
-        <div className="col-lg-1">
+        <label className="col-lg-1">
             {key}:
-        </div>
+        </label>
         <div className="col-lg-1">
             { value
                 ? (<input type="checkbox" value={value} checked />)
