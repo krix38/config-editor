@@ -7,7 +7,10 @@ const config = {
   name: "john",
   surname: "snow",
   place: {
-    city: "winterfell"
+    city: "winterfell",
+    weather: {
+      isCold: true
+    }
   },
   age: 34,
   isTargaryien: true,
